@@ -1,0 +1,38 @@
+body {
+    font-family: poppins, sans-serif;
+}
+
+h1{
+    text-align: center;
+}
+
+#dataContainer {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 73%;
+    margin: auto;
+    display: grid;
+    padding: 20px;
+    grid-template-columns: repeat(6,1fr);
+    gap: 20px;
+    border-radius: 20px;
+}
+
+#child {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#child img {
+    border-radius: 10px;
+}
+
+input {
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    margin-left: 600px;
+    margin-bottom:20px ;
+}

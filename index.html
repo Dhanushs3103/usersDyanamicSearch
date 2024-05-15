@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>User search Dynamic</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // Your  code will go here
+
+    let data = [
+      {
+        id: 1,
+        email: "george.bluth@reqres.in",
+        first_name: "George",
+        last_name: "Bluth",
+        avatar: "https://reqres.in/img/faces/1-image.jpg",
+      },
+      {
+        id: 2,
+        email: "janet.weaver@reqres.in",
+        first_name: "Janet",
+        last_name: "Weaver",
+        avatar: "https://reqres.in/img/faces/2-image.jpg",
+      },
+      {
+        id: 3,
+        email: "emma.wong@reqres.in",
+        first_name: "Emma",
+        last_name: "Wong",
+        avatar: "https://reqres.in/img/faces/3-image.jpg",
+      },
+      {
+        id: 4,
+        email: "eve.holt@reqres.in",
+        first_name: "Eve",
+        last_name: "Holt",
+        avatar: "https://reqres.in/img/faces/4-image.jpg",
+      },
+      {
+        id: 5,
+        email: "charles.morris@reqres.in",
+        first_name: "Charles",
+        last_name: "Morris",
+        avatar: "https://reqres.in/img/faces/5-image.jpg",
+      },
+      {
+        id: 6,
+        email: "tracey.ramos@reqres.in",
+        first_name: "Tracey",
+        last_name: "Ramos",
+        avatar: "https://reqres.in/img/faces/6-image.jpg",
+      },
+    ];
+
+    function DisplayData({ data }) {
+      return (
+        <div id="child">
+          <img src={data.avatar} alt="img" />
+          <h4>First name: {data.first_name}</h4>
+          <h4>Last name: {data.last_name}</h4>
+        </div>
+      );
+    }
+    // function UserProfile
+    function UserProfile() {
+      const [searchQuery, setSearchQuery] = React.useState("");
+
+      function handleChange(event) {
+        setSearchQuery(event.target.value);
+      }
+
+      return (
+        <>
+          <h1>User Data</h1>
+          <input
+            type="text"
+            placeholder="Enter the user name"
+            value={searchQuery}
+            onChange={handleChange}
+          />
+
+          <div id="dataContainer">
+            {data
+              .filter((user) => {
+                const fullName = `${user.first_name} ${user.last_name}`;
+                return fullName
+                  .toLowerCase()
+                  .includes(searchQuery.toLowerCase());
+              })
+              .map((user, i) => {
+                return <DisplayData key={i} data={user} />;
+              })}
+          </div>
+        </>
+      );
+    }
+
+    // App component
+    function App() {
+      return (
+        <>
+          <UserProfile />
+        </>
+      );
+    }
+
+
+    // catching the root Element
+    let rootElement = ReactDOM.createRoot(document.getElementById("root"));
+    rootElement.render(<App />);
+  </script>
+</html>
